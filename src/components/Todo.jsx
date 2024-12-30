@@ -1,5 +1,6 @@
 import React from 'react'
 import { useState } from 'react'
+import TodoItem from './TodoItem'
 
 const Todo = () => {
     const [todo,setTodo] = useState("")
@@ -8,7 +9,7 @@ const Todo = () => {
        e.preventDefault()
        setTask([...task,todo])
        setTodo("")
-       console.log(todo);
+    //    console.log(todo);
        
     }
   return (
@@ -16,10 +17,15 @@ const Todo = () => {
     <div>
         <form onSubmit={handleSubmit}>
         <input type="text" value={todo} onChange={(e)=>{setTodo(e.target.value)}}  className='border border-black'/>
-        <button type='submit' className='border border-black px-2 mx-3'>Add</button>
+        <button type='submit' className='border border-black px-4 mx-4'>Add</button>
         </form>
-        {console.log([task])};
-    </div>
+        {/* {console.log([task])};  */}
+
+        {task.map((item)=>(
+           <TodoItem key={item} item={item} />
+        ))}
+        
+        </div>
     </>
   )
 }
